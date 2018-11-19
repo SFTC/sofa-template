@@ -1,4 +1,10 @@
 /**
+ * pageName: {{pageNameUpper}}
+ * chineseName: {{pageNavChineseName}}
+ * parentModule: {{moduleName}}
+ * author: {{author}}
+ * date: {{date}}
+ * 
  * 权限检查
  * @param {*} authCode 权限码
  * @param {*} authList 用户权限列表，在store.global中有存储
