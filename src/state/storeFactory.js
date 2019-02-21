@@ -1,13 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import createSagaMiddleware from 'redux-saga';
+import reduxSofaSaga from 'redux-sofa-saga';
+import { notification } from 'antd';
 
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default function storeFactory(initialState = {}) {
-  const middlewares = [sagaMiddleware];
+  const middlewares = [sagaMiddleware, reduxSofaSaga({
+    notification,
+  })];
 
   const enhancers = [applyMiddleware(...middlewares)];
 

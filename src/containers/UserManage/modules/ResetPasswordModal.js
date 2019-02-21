@@ -13,8 +13,6 @@ import connectFactory from 'utils/connectFactory';
 import { CREATE, EDIT } from 'utils/constants';
 import { injectIntl, intlShape } from 'react-intl';
 import commonMessages from 'utils/commonMessages';
-import DataAuthSelect from './DataAuthSelect';
-import OperationAuthSelect from './OperationAuthSelect';
 
 import messages from '../messages';
 

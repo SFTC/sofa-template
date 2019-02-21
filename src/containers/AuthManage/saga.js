@@ -7,8 +7,10 @@ import {
   put,
   select,
   takeLatest,
+  all,
 } from 'redux-saga/effects';
 
+// eslint-disable-next-line no-unused-vars
 import { FATCH_ACTION_SUCCESS_PREFIX, FATCH_ACTION_ERROR_PREFIX, CREATE } from 'utils/constants';
 import { loadingDataError } from '../../state/actions';
 import { getDataList, updateEntityModal } from './actions';
@@ -41,8 +43,8 @@ export function* watcher(type, process) {
  * Root saga manages watcher lifecycle
  */
 export default function* rootSaga() {
-  yield [
+  yield all([
     call(() => watcher(`${FATCH_ACTION_SUCCESS_PREFIX}${POST_CREATE_ENTITY}`, createEditSuccess)),
     call(() => watcher(`${FATCH_ACTION_SUCCESS_PREFIX}${POST_EDIT_ENTITY}`, createEditSuccess)),
-  ];
+  ]);
 }

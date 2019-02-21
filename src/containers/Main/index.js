@@ -23,14 +23,14 @@ import Menu from 'components/Menu';
 import Crumb from 'components/Crumb';
 import LanguageBar from 'components/LanguageBar';
 
-import injectSaga from 'utils/injectSaga';
+// import injectSaga from 'utils/injectSaga';
 import { getMenuData, getMenuMap } from 'utils/menuHelper';
 import Utils from 'utils/utils';
 
 import { gotoPass } from 'config/pass.conf';
 import commonConf from 'config/main.conf';
 
-import saga from './saga';
+// import saga from './saga';
 import CoreRoute from './CoreRoute';
 
 import { selectLang, selectCurrentUserInfo } from '../../state/selectors';
@@ -39,7 +39,7 @@ import { toggleLang, getLoginUserInfo } from '../../state/actions';
 import messages from './messages';
 
 const history = createHistory();
-const withSaga = injectSaga({ key: 'main', saga });
+// const withSaga = injectSaga({ key: 'main', saga });
 
 const {
   Header,
@@ -58,7 +58,7 @@ const reg = new RegExp('(/login|/resetpwd|/editpwd|/bindphone)');
   toggleLang,
   getLoginUserInfo,
 })
-@withSaga
+// @withSaga
 class Main extends React.Component {
   constructor(props) {
     super(props);
