@@ -9,7 +9,7 @@ import {
 
 import { gotoPass } from 'config/pass.conf';
 
-const getLoginUserInfoService = () => getRequest('/management/basic/getuserauth');
+const getLoginUserInfoService = () => getRequest('/user/basic/getuserauth');
 
 getLoginUserInfoService().then((res) => {
   if (res) {

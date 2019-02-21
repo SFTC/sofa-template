@@ -60,25 +60,7 @@ class OperationAuthSelect extends React.PureComponent {
     this.props.getPrivilegeList();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const show = this.props.entityModal.show;
-    const newShow = nextProps.entityModal.show;
-    const roleId = this.props.entityModal.data.role_id;
-    const newRoleId = nextProps.entityModal.data.role_id;
-
-    if (show === true && newShow === false) {
-      this.props.form.resetFields();
-    } else if (show === false && newShow === true) {
-      if (roleId !== newRoleId) {
-        this.setState({
-          selectedKeysValue: [],
-        });
-      }
-    }
-  }
-
   state = {
-    selectedKeysValue: [],
   };
 
   handleOk = (e) => {
@@ -103,17 +85,23 @@ class OperationAuthSelect extends React.PureComponent {
     });
   }
 
-  onSelectChangeHandle = (sourceSelectedKeys, targetSelectedKeys) => {
-    const arr = [].concat(sourceSelectedKeys).concat(targetSelectedKeys);
-    this.setState({
-      selectedKeysValue: arr,
+  onChangeHandle = (targetKeys) => {
+    const { entityModal } = this.props;
+    const { data, type } = entityModal;
+    const values = this.props.form.getFieldsValue();
+    values.privileges = targetKeys;
+    if (type === EDIT) {
+      values.role_id = data.role_id;
+    }
+    this.props.updateEntityModal({
+      ...entityModal,
+      data: values,
     });
   }
 
   render() {
     const { entityModal, intl, operationAuth } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { data } = entityModal;
+    const { privileges } = entityModal.data;
     const formItemLayout = {
       labelCol: {
         xs: { span: 24 },
@@ -130,22 +118,15 @@ class OperationAuthSelect extends React.PureComponent {
         {...formItemLayout}
         label={intl.formatMessage(messages.authGroupManage.operationAuth)}
       >
-        {
-          getFieldDecorator('privileges', {
-            initialValue: data.privileges || [],
-            valuePropName: 'targetKeys',
-          })(
-            <Transfer
-              dataSource={operationAuth} // 登陆用户有的所有权限
-              showSearch
-              targetKeys={this.state.selectedKeysValue} // 当前用户已有的权限
-              onChange={this.onSelectChangeHandle}
-              render={item => item.title}
-              searchPlaceholder={intl.formatMessage(commonMessages.inputPlaceholder)}
-              notFoundContent={intl.formatMessage(commonMessages.dataNotFound)}
-            />,
-          )
-        }
+        <Transfer
+          dataSource={operationAuth} // 登陆用户有的所有权限
+          showSearch
+          targetKeys={privileges} // 当前用户已有的权限
+          onChange={this.onChangeHandle}
+          render={item => item.title}
+          searchPlaceholder={intl.formatMessage(commonMessages.inputPlaceholder)}
+          notFoundContent={intl.formatMessage(commonMessages.dataNotFound)}
+        />
       </FormItem>);
   }
 }

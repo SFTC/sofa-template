@@ -1,10 +1,3 @@
-/**
- * pageName: {{pageNameUpper}}
- * chineseName: {{pageNavChineseName}}
- * parentModule: {{moduleName}}
- * author: {{author}}
- * date: {{date}}
- */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

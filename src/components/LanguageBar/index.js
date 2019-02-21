@@ -1,8 +1,3 @@
-/**
- * componentName: {{ComponentName}}
- * author: {{author}}
- * date: {{date}}
- */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Radio } from 'antd';

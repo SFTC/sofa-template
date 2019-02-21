@@ -67,6 +67,7 @@ class CreateAndEditModal extends React.PureComponent {
     const { type } = this.props.entityModal;
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        values.privileges = this.props.entityModal.data.privileges;
         if (type === CREATE) {
           this.props.postCreateEntity(values);
         } else if (type === EDIT) {
@@ -85,7 +86,7 @@ class CreateAndEditModal extends React.PureComponent {
   }
 
   render() {
-    const { entityModal, intl, type } = this.props;
+    const { entityModal, intl, type, form } = this.props;
     const { data } = entityModal;
 
     const { getFieldDecorator } = this.props.form;
@@ -145,7 +146,7 @@ class CreateAndEditModal extends React.PureComponent {
                 <Input />,
               )}
             </FormItem>
-            <OperationAuthSelect />
+            <OperationAuthSelect form={form} />
             <FormItem
               {...formItemLayout}
               label={intl.formatMessage(commonMessages.remark)}

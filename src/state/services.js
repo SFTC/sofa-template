@@ -1,3 +1,3 @@
 import { getRequest } from 'utils/request';
 
-export const getLoginUserInfoService = () => getRequest('/management/basic/getuserauth');
+export const getLoginUserInfoService = () => getRequest('/user/basic/getuserauth');
