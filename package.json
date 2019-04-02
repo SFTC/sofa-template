@@ -67,6 +67,7 @@
     "redux-sofa-saga": "1.0.1",
     "reselect": "^4.0.0",
     "sanitize.css": "^8.0.0",
+    "sofa-tool": "0.0.2",
     "styled-components": "^4.0.3",
     "webpack": "^4.20.2",
     "webpack-merge": "^4.1.4",
